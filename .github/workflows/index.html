@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EZTeam — Next-Gen Windows Recovery Tool</title>
+  
+  <!-- Шрифты и Tailwind CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            dark: {
+              950: '#070709',
+              900: '#0D0E12',
+              800: '#14161E',
+              700: '#1E212D',
+            },
+            accent: {
+              purple: '#6366F1',
+              cyan: '#06B6D4',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Фоновые неоновые пятна */
+    .glow-bg {
+      background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.18) 0%, rgba(7, 7, 9, 0) 70%);
+    }
+
+    /* Стеклянные карточки с мягкой анимацией границы */
+    .card-border {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(180deg, rgba(20, 22, 30, 0.75) 0%, rgba(13, 14, 18, 0.75) 100%);
+      backdrop-filter: blur(16px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card-border:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.25);
+      transform: translateY(-3px);
+    }
+
+    /* Плавное появление при загрузке страницы */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-up {
+      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+  </style>
+</head>
+
+<body class="bg-dark-950 text-gray-200 font-sans antialiased min-h-screen relative overflow-x-hidden selection:bg-accent-purple selection:text-white flex flex-col justify-between">
+
+  <!-- Фоновое неоновое свечение -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[650px] glow-bg pointer-events-none -z-10"></div>
+
+  <!-- Хедер -->
+  <header class="max-w-5xl mx-auto w-full px-6 py-6 flex items-center justify-between animate-fade-up">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20 tracking-wider">
+        EZ
+      </div>
+      <span class="text-xl font-bold tracking-tight text-white">EZTeam<span class="text-accent-cyan">.dev</span></span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <!-- Кнопка Telegram -->
+      <a href="https://t.me/EZTeeam" target="_blank" rel="noopener noreferrer" 
+         class="px-4 py-2 text-sm font-medium text-white card-border rounded-xl hover:bg-white/5 flex items-center gap-2">
+        <svg class="w-4 h-4 fill-[#229ED9]" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.943z"/></svg>
+        <span>Telegram</span>
+      </a>
+
+      <!-- Кнопка GitHub -->
+      <a href="https://github.com/EZTeam" target="_blank" rel="noopener noreferrer" 
+         class="px-4 py-2 text-sm font-medium text-white card-border rounded-xl hover:bg-white/5 flex items-center gap-2">
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span class="hidden sm:inline">GitHub</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Главный контент -->
+  <main class="max-w-4xl mx-auto px-6 pt-12 pb-16 flex-grow flex flex-col justify-center">
+    
+    <!-- Hero-текст -->
+    <div class="text-center max-w-2xl mx-auto mb-14 animate-fade-up">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full card-border text-xs font-mono text-cyan-400 mb-6">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+        STANDALONE EXECUTABLE • V1.0.0
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.1] mb-6">
+        Экстренная реанимация <span class="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">Windows</span>
+      </h1>
+      <p class="text-gray-400 text-base sm:text-lg leading-relaxed">
+        Автономный мультитул для ликвидации винлокеров, баннеров и майнеров. Моментальный сброс системных ограничений и очистка реестра.
+      </p>
+    </div>
+
+    <!-- Карточка флагмана: EZUnlocker -->
+    <div class="card-border rounded-3xl p-8 sm:p-10 relative overflow-hidden animate-fade-up delay-100 shadow-2xl">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-2xl font-bold">
+            ⚡
+          </div>
+          <div>
+            <div class="flex items-center gap-3">
+              <h2 class="text-2xl font-bold text-white tracking-tight">EZUnlocker</h2>
+              <span class="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                v1.0.0
+              </span>
+            </div>
+            <span class="text-xs font-mono text-gray-400">Windows Recovery & Unlock Tool</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 text-xs font-mono text-gray-400 bg-dark-900/60 px-3 py-1.5 rounded-lg border border-white/5">
+          <span>ОС: Windows 10 / 11 (x64)</span>
+        </div>
+      </div>
+
+      <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+        Снимает ограничения на Диспетчер задач, Редактор реестра, Командную строку (CMD) и окно «Выполнить». Включает Process Killer с защитой системных служб и сканер автозагрузки в один клик.
+      </p>
+
+      <div class="flex flex-wrap gap-2 mb-8 font-mono text-xs text-gray-400">
+        <span class="px-3 py-1 rounded-lg bg-dark-900 border border-white/5">Direct WinAPI</span>
+        <span class="px-3 py-1 rounded-lg bg-dark-900 border border-white/5">Auto-Refresh Monitor</span>
+        <span class="px-3 py-1 rounded-lg bg-dark-900 border border-white/5">No Installation Required</span>
+      </div>
+
+      <!-- Кнопки действий -->
+      <div class="flex flex-col sm:flex-row items-center gap-4">
+        <!-- Прямая ссылка на скачивание -->
+        <a href="EZUnlocker.exe" download="EZUnlocker.exe" 
+           class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 text-white font-semibold rounded-2xl transition-all shadow-lg shadow-indigo-500/25 flex items-center justify-center gap-3 text-base group">
+          <svg class="w-5 h-5 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Скачать EZUnlocker.exe
+        </a>
+
+        <!-- Кнопка Telegram-канала -->
+        <a href="https://t.me/EZTeeam" target="_blank" rel="noopener noreferrer" 
+           class="w-full sm:w-auto px-6 py-4 card-border hover:bg-white/5 text-gray-200 font-semibold rounded-2xl transition-all flex items-center justify-center gap-2 text-base">
+          <span>Наш Telegram</span>
+          <span class="text-cyan-400">→</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Футер -->
+  <footer class="border-t border-white/5 py-8 text-center text-xs text-gray-500 animate-fade-up delay-200">
+    <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 EZTeam. Свободное ПО для восстановления систем.</span>
+      <div class="flex items-center gap-6">
+        <a href="https://t.me/EZTeeam" target="_blank" class="hover:text-cyan-400 transition-colors">Канал Telegram</a>
+        <a href="https://github.com/EZTeam" target="_blank" class="hover:text-gray-300 transition-colors">GitHub</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
